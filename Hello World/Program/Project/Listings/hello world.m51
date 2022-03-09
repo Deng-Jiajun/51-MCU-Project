@@ -1,0 +1,215 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    03/08/2022  02:49:54  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\hello world.obj TO .\Objects\hello world PRINT (.\Listings\
+>> hello world.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\hello world.obj (HELLO_WORLD)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\hello world (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0008H     UNIT         ?DT?HELLO_WORLD
+            DATA    0010H     0001H     UNIT         _DATA_GROUP_
+            IDATA   0011H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008CH     UNIT         ?C_C51STARTUP
+            CODE    008FH     003BH     UNIT         ?PR?BITBYBIT?HELLO_WORLD
+            CODE    00CAH     0023H     UNIT         ?PR?_DELAY_XMS?HELLO_WORLD
+            CODE    00EDH     0022H     UNIT         ?PR?BITSHIFT?HELLO_WORLD
+            CODE    010FH     001CH     UNIT         ?PR?ARRAYCONTROL?HELLO_WORLD
+            CODE    012BH     000BH     UNIT         ?C_INITSEG
+            CODE    0136H     0005H     UNIT         ?PR?MAIN?HELLO_WORLD
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\hello world (?C_STARTUP)
+
+
+SEGMENT                                DATA_GROUP 
+  +--> CALLED SEGMENT                START    LENGTH
+----------------------------------------------------
+?C_C51STARTUP                        -----    -----
+  +--> ?PR?MAIN?HELLO_WORLD
+  +--> ?C_INITSEG
+
+?PR?MAIN?HELLO_WORLD                 -----    -----
+  +--> ?PR?BITSHIFT?HELLO_WORLD
+
+?PR?BITSHIFT?HELLO_WORLD             0010H    0001H
+  +--> ?PR?_DELAY_XMS?HELLO_WORLD
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\hello world (?C_STARTUP)
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/08/2022  02:49:54  PAGE 2
+
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0003H         SEGMENT       ?C_C51STARTUP
+  I:0011H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0006H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0003H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0003H         LINE#         133
+  C:0005H         LINE#         134
+  C:0006H         LINE#         135
+  C:0007H         LINE#         136
+  C:0009H         LINE#         185
+  C:000CH         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        HELLO_WORLD
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  B:0090H.0       PUBLIC        LED0
+  B:0090H.1       PUBLIC        LED1
+  B:0090H.2       PUBLIC        LED2
+  B:0090H.3       PUBLIC        LED3
+  B:0090H.4       PUBLIC        LED4
+  B:0090H.5       PUBLIC        LED5
+  B:0090H.6       PUBLIC        LED6
+  B:0090H.7       PUBLIC        LED7
+  C:00EDH         PUBLIC        BitShift
+  C:0136H         PUBLIC        main
+  C:00CAH         PUBLIC        _Delay_xms
+  D:0008H         PUBLIC        LED_DATA
+  C:010FH         PUBLIC        ArrayControl
+  C:008FH         PUBLIC        BitByBit
+  -------         PROC          _DELAY_XMS
+  D:0007H         SYMBOL        ms
+  -------         DO            
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/08/2022  02:49:54  PAGE 3
+
+
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:00CAH         LINE#         13
+  C:00CAH         LINE#         14
+  C:00CAH         LINE#         16
+  C:00D7H         LINE#         17
+  C:00D7H         LINE#         19
+  C:00E5H         LINE#         21
+  C:00ECH         LINE#         22
+  -------         ENDPROC       _DELAY_XMS
+  -------         PROC          BITBYBIT
+  C:008FH         LINE#         25
+  C:008FH         LINE#         26
+  C:008FH         LINE#         28
+  C:0091H         LINE#         29
+  C:0096H         LINE#         30
+  C:0098H         LINE#         32
+  C:009AH         LINE#         33
+  C:009DH         LINE#         34
+  C:009FH         LINE#         36
+  C:00A1H         LINE#         37
+  C:00A4H         LINE#         38
+  C:00A6H         LINE#         40
+  C:00A8H         LINE#         41
+  C:00ABH         LINE#         42
+  C:00ADH         LINE#         44
+  C:00AFH         LINE#         45
+  C:00B2H         LINE#         46
+  C:00B4H         LINE#         48
+  C:00B6H         LINE#         49
+  C:00B9H         LINE#         50
+  C:00BBH         LINE#         52
+  C:00BDH         LINE#         53
+  C:00C0H         LINE#         54
+  C:00C2H         LINE#         56
+  C:00C4H         LINE#         57
+  C:00C7H         LINE#         58
+  C:00C9H         LINE#         59
+  -------         ENDPROC       BITBYBIT
+  -------         PROC          ARRAYCONTROL
+  -------         DO            
+  D:0001H         SYMBOL        i
+  -------         ENDDO         
+  C:010FH         LINE#         64
+  C:010FH         LINE#         65
+  C:010FH         LINE#         67
+  C:011BH         LINE#         68
+  C:011BH         LINE#         69
+  C:0122H         LINE#         70
+  C:0127H         LINE#         71
+  C:012AH         LINE#         72
+  -------         ENDPROC       ARRAYCONTROL
+  -------         PROC          BITSHIFT
+  -------         DO            
+  D:0010H         SYMBOL        temp
+  D:0001H         SYMBOL        i
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/08/2022  02:49:54  PAGE 4
+
+
+  -------         ENDDO         
+  C:00EDH         LINE#         75
+  C:00EDH         LINE#         76
+  C:00EDH         LINE#         77
+  C:00F0H         LINE#         78
+  C:00F2H         LINE#         79
+  C:00FCH         LINE#         80
+  C:00FCH         LINE#         81
+  C:00FFH         LINE#         82
+  C:0106H         LINE#         83
+  C:010BH         LINE#         84
+  C:010EH         LINE#         85
+  -------         ENDPROC       BITSHIFT
+  -------         PROC          MAIN
+  C:0136H         LINE#         87
+  C:0136H         LINE#         88
+  C:0136H         LINE#         89
+  C:0136H         LINE#         90
+  C:0136H         LINE#         93
+  C:0139H         LINE#         94
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        HELLO_WORLD
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?BITBYBIT?HELLO_WORLD
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ARRAYCONTROL?HELLO_WORLD
+
+Program Size: data=18.0 xdata=0 code=315
+LINK/LOCATE RUN COMPLETE.  2 WARNING(S),  0 ERROR(S)

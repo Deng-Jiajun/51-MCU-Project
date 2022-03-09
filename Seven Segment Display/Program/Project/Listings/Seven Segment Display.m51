@@ -1,0 +1,99 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    03/09/2022  23:56:18  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\Seven Segment Display PRINT (.\Listings\Seven Segment Displa
+>> y.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\Seven Segment Display (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000AH     UNIT         ?DT?MAIN
+            DATA    0012H     0001H     UNIT         _DATA_GROUP_
+            IDATA   0013H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008CH     UNIT         ?C_C51STARTUP
+            CODE    008FH     0028H     UNIT         ?PR?MAIN?MAIN
+            CODE    00B7H     0023H     UNIT         ?PR?_DELAYXMS?MAIN
+            CODE    00DAH     000DH     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Seven Segment Display (MAIN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                  0012H    0001H
+  +--> ?PR?_DELAYXMS?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Seven Segment Display (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/09/2022  23:56:18  PAGE 2
+
+
+  C:008FH         PUBLIC        main
+  C:00B7H         PUBLIC        _DelayXms
+  D:0008H         PUBLIC        SEG_DATA
+  -------         PROC          _DELAYXMS
+  D:0007H         SYMBOL        ms
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:00B7H         LINE#         4
+  C:00B7H         LINE#         5
+  C:00B7H         LINE#         7
+  C:00C4H         LINE#         8
+  C:00C4H         LINE#         10
+  C:00D2H         LINE#         12
+  C:00D9H         LINE#         13
+  -------         ENDPROC       _DELAYXMS
+  -------         PROC          MAIN
+  -------         DO            
+  D:0012H         SYMBOL        i
+  -------         ENDDO         
+  C:008FH         LINE#         27
+  C:008FH         LINE#         28
+  C:008FH         LINE#         29
+  C:008FH         LINE#         30
+  C:008FH         LINE#         32
+  C:009DH         LINE#         33
+  C:009DH         LINE#         34
+  C:00A5H         LINE#         35
+  C:00AAH         LINE#         36
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=20.0 xdata=0 code=231
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

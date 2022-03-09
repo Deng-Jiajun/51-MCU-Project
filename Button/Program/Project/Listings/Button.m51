@@ -1,0 +1,175 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    03/08/2022  19:35:05  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\Button PRINT (.\Listings\Button.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\Button (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0009H     UNIT         ?DT?MAIN
+            IDATA   0011H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008CH     UNIT         ?C_C51STARTUP
+            CODE    008FH     0046H     UNIT         ?PR?MAIN?MAIN
+            CODE    00D5H     0023H     UNIT         ?PR?_DELAYXMS?MAIN
+            CODE    00F8H     0011H     UNIT         ?PR?KEY2FUNCTION?MAIN
+            CODE    0109H     000EH     UNIT         ?C_INITSEG
+            CODE    0117H     0004H     UNIT         ?PR?KEY3FUNCTION?MAIN
+            CODE    011BH     0004H     UNIT         ?PR?KEY4FUNCTION?MAIN
+            CODE    011FH     0003H     UNIT         ?PR?KEY1FUNCTION?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Button (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN
+  +--> ?PR?_DELAYXMS?MAIN
+  +--> ?PR?KEY1FUNCTION?MAIN
+  +--> ?PR?KEY2FUNCTION?MAIN
+  +--> ?PR?KEY3FUNCTION?MAIN
+  +--> ?PR?KEY4FUNCTION?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Button (MAIN)
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/08/2022  19:35:05  PAGE 2
+
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00B0H         PUBLIC        P3
+  B:0080H.0       PUBLIC        LED1
+  B:00B0H.0       PUBLIC        KEY1
+  B:00B0H.1       PUBLIC        KEY2
+  B:00B0H.2       PUBLIC        KEY3
+  B:00B0H.3       PUBLIC        KEY4
+  C:008FH         PUBLIC        main
+  C:011FH         PUBLIC        Key1Function
+  C:00F8H         PUBLIC        Key2Function
+  C:0117H         PUBLIC        Key3Function
+  C:011BH         PUBLIC        Key4Function
+  C:00D5H         PUBLIC        _DelayXms
+  D:0009H         PUBLIC        LED_DATA
+  -------         PROC          _DELAYXMS
+  D:0007H         SYMBOL        ms
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:00D5H         LINE#         23
+  C:00D5H         LINE#         24
+  C:00D5H         LINE#         26
+  C:00E2H         LINE#         27
+  C:00E2H         LINE#         29
+  C:00F0H         LINE#         31
+  C:00F7H         LINE#         32
+  -------         ENDPROC       _DELAYXMS
+  -------         PROC          KEY1FUNCTION
+  C:011FH         LINE#         42
+  C:011FH         LINE#         43
+  C:011FH         LINE#         44
+  C:0121H         LINE#         45
+  -------         ENDPROC       KEY1FUNCTION
+  -------         PROC          KEY2FUNCTION
+  -------         DO            
+  D:0008H         SYMBOL        count
+  -------         ENDDO         
+  C:00F8H         LINE#         47
+  C:00F8H         LINE#         48
+  C:00F8H         LINE#         51
+  C:0100H         LINE#         52
+  C:0108H         LINE#         53
+  -------         ENDPROC       KEY2FUNCTION
+  -------         PROC          KEY3FUNCTION
+  C:0117H         LINE#         54
+  C:0117H         LINE#         55
+  C:0117H         LINE#         56
+  C:011AH         LINE#         57
+  -------         ENDPROC       KEY3FUNCTION
+  -------         PROC          KEY4FUNCTION
+  C:011BH         LINE#         58
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/08/2022  19:35:05  PAGE 3
+
+
+  C:011BH         LINE#         59
+  C:011BH         LINE#         60
+  C:011EH         LINE#         61
+  -------         ENDPROC       KEY4FUNCTION
+  -------         PROC          MAIN
+  C:008FH         LINE#         63
+  C:008FH         LINE#         64
+  C:008FH         LINE#         65
+  C:008FH         LINE#         66
+  C:008FH         LINE#         68
+  C:0092H         LINE#         69
+  C:0092H         LINE#         70
+  C:0097H         LINE#         71
+  C:009AH         LINE#         72
+  C:009AH         LINE#         74
+  C:009DH         LINE#         76
+  C:00A0H         LINE#         77
+  C:00A0H         LINE#         78
+  C:00A0H         LINE#         80
+  C:00A3H         LINE#         81
+  C:00A3H         LINE#         82
+  C:00A8H         LINE#         83
+  C:00ABH         LINE#         84
+  C:00ABH         LINE#         85
+  C:00AEH         LINE#         87
+  C:00B1H         LINE#         88
+  C:00B1H         LINE#         89
+  C:00B1H         LINE#         91
+  C:00B4H         LINE#         92
+  C:00B4H         LINE#         93
+  C:00B9H         LINE#         94
+  C:00BCH         LINE#         95
+  C:00BCH         LINE#         96
+  C:00BFH         LINE#         98
+  C:00C2H         LINE#         99
+  C:00C2H         LINE#         100
+  C:00C2H         LINE#         102
+  C:00C5H         LINE#         103
+  C:00C5H         LINE#         104
+  C:00CAH         LINE#         105
+  C:00CDH         LINE#         106
+  C:00CDH         LINE#         107
+  C:00D0H         LINE#         109
+  C:00D3H         LINE#         110
+  C:00D3H         LINE#         111
+  C:00D3H         LINE#         112
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=18.0 xdata=0 code=290
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
