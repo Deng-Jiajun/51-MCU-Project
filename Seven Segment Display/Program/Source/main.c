@@ -27,7 +27,7 @@ void DelayXms(unsigned char ms) // 延时 xms
 unsigned char SEG_NUMERAL_DATA_COMMON_ANODE[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
 
 // 阴极 0~~9
-unsigned char SEG_NUMERAL_DATA_COMMON_CATHODE[10] = {0x3F, 0x06, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
+unsigned char SEG_NUMERAL_DATA_COMMON_CATHODE[10] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6d, 0x7d, 0x07, 0x7F, 0x6F};
 
 void CommonAnodeSegmentDisplayShowNumber(void)
 {
@@ -52,5 +52,7 @@ void main(void)
 {
     while (1)
     {
+        CommonCathodeSegmentDisplayShowNumber();
+        // P1=0X5B;
     }
 }
