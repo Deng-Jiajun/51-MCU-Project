@@ -1,0 +1,113 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              03/18/2022 11:42:52 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\Source\main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Lis
+                    -tings\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include "ExternalInterrupt.h"
+   3          #include "delay.h"
+   4          #include "led.h"
+   5          
+   6          /**
+   7           * @brief 定义一个全局变量，用来判断有没有回到主函数
+   8           * 
+   9           * 主函数会一直给它置1
+  10           * 中断函数会判断它的值，如果是1
+  11           *      中断1会点亮LED0
+  12           *      中断2会点亮LED1
+  13           * 
+  14           * 如果两个连续的中断，中途回到了主函数，会同时点亮两盏灯
+  15           * 如果是连续触发的中断，至少会亮其中一盏灯
+  16           * ! 实验结果：一盏也没亮 ❓给我整不会了……
+  17           * 分别触发都符合预期，不冲突亮两盏，冲突亮一盏
+  18           * 问题在于，唯二的 将 FLAG_RETURN_MAIN 置 0 的语句是在亮灯后执行的，也就是从代
+             -码逻辑上看，不应该存在一盏灯都不亮的情况，暂时只能解释为冲突引发未知行为，但不知
+             -道是由于机制引发的，还是仿真软件引发的
+  19           */
+  20          unsigned char FLAG_RETURN_MAIN;
+  21          
+  22          
+  23          // 单盏亮灭测试函数
+  24          void TestLED(void)
+  25          {
+  26   1          int i;
+  27   1          for (i = 0; i < 8; i++)
+  28   1          {
+  29   2              TurnOnLED(i);
+  30   2              DelayXms(200);
+  31   2          }
+  32   1      
+  33   1          DelayXms(500);
+  34   1      
+  35   1          for (i = 0; i < 8; i++)
+  36   1          {
+  37   2              TurnOffLED(i);
+  38   2              DelayXms(200);
+  39   2          }
+  40   1      }
+  41          void main(void)
+  42          {
+  43   1          /*
+  44   1          外部中断实验
+  45   1      
+  46   1          设计要求
+  47   1          1. 绘制仿真图，按键 1 接 P32，按键 2 接 P33
+  48   1          2. 设置中断 0 为低优先级，中断 1 为高优先级
+  49   1          3. 主程序点亮 LED1-LED4.
+  50   1          4. 按键 1 按下关闭 LED1-LED4，并且点亮 LED5-LED6，持续大概 800ms 后关闭。
+  51   1          5. 按键 2 按下点亮 LED7-LED8，持续大概 800ms 后关闭。
+  52   1          测试：
+C51 COMPILER V9.60.0.0   MAIN                                                              03/18/2022 11:42:52 PAGE 2   
+
+  53   1          1. 按下按键 1，等待一段时间后（1s）按下按键 2
+  54   1          2. 按下按键 1 后立马按下按键 2
+  55   1          3. 按下按键 2 后立马按下按键 1
+  56   1      
+  57   1          实验结果：
+  58   1          1. 1-4 暗，5-6 亮 800ms 后暗，1-4 亮, 7-8 亮 800ms 后暗
+  59   1            （未冲突，中断分别正常响应）
+  60   1      
+  61   1          2. 1-4 暗，5-6 亮，7-8 亮 800ms 后暗，<800ms 后 5-6 暗，1-4 亮
+  62   1            （冲突，高优先级插入，中断嵌套执行完毕后低优先级继续执行）
+  63   1      
+  64   1          3. 7-8 亮 800ms 后暗，1-4 暗，5-6 亮 800ms 后暗，1-4 亮
+  65   1            （冲突，低优先级等待高优先级执行完毕后执行）
+  66   1           */
+  67   1      
+  68   1          // TestLED();
+  69   1      
+  70   1          // 中断初始化
+  71   1          Init_INT0();
+  72   1          Init_INT1();
+  73   1      
+  74   1          // FLAG_RETURN_MAIN=0;
+  75   1      
+  76   1          while (1)
+  77   1          {
+  78   2              FLAG_RETURN_MAIN = 1;
+  79   2              // // 点亮 LED1~LED4
+  80   2              // TurnOnLED(0);
+  81   2              // TurnOnLED(1);
+  82   2              // TurnOnLED(2);
+  83   2              TurnOnLED(3);
+  84   2          }
+  85   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     96    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -4,6 +4,11 @@
         "REG51.H": "cpp",
         "lcd1602.h": "c",
         "delay.h": "c",
-        "key.h": "c"
+        "key.h": "c",
+        "stdio.h": "c",
+        "STDIO.H": "cpp",
+        "key4x4.h": "c",
+        "externalinterrupt.h": "c",
+        "led.h": "c"
     }
 }

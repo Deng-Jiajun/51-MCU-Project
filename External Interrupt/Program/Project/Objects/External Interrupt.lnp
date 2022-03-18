@@ -1,0 +1,6 @@
+".\Objects\ExternalInterrupt.obj",
+".\Objects\main.obj",
+".\Objects\delay.obj",
+".\Objects\led.obj" 
+TO ".\Objects\External Interrupt" 
+PRINT(".\Listings\External Interrupt.m51")
