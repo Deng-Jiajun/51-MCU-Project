@@ -3,7 +3,7 @@
 #include "led.h"
 #include "delay.h"
 
-/* 方式 0 定时器只有 13 位，最大值 8192，最多只能定时 8.192ms，所以引入一个 count 计算中断的次数，以中断次数来实现更大的触发执行间隔（count ms）*/
+/* 方式 0 定时器只有 13 位，最大值 8191，最多只能定时 8.192ms，所以引入一个 count 计算中断的次数，以中断次数来实现更大的触发执行间隔（count ms）*/
 unsigned int COUNT_T0_LED0 = 0;
 unsigned int COUNT_T0_LED1 = 0;
 unsigned int COUNT_T1_LED3 = 0;

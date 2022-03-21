@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              03/21/2022 12:22:43 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN                                                              03/21/2022 16:01:53 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
@@ -17,43 +17,36 @@ line level    source
    7          void main(void)
    8          {
    9   1      
-  10   1        // 方式 0
-  11   1        /**
-  12   1         * 使用定时器 0，方式 0
-  13   1         *    定时 1ms 中断一次，
-  14   1         *    控制 LED1 灯每 20ms 亮（10ms）灭（10ms）一次，
-  15   1         *    控制 LED2 每秒闪烁一次。
-  16   1         *
-  17   1         * 使用定时器 1，方式 0，
-  18   1         *    控制 LED3 每秒闪烁一次。
-  19   1         *    用一个按键控制 LED4，默认 100ms 闪烁一次，
-  20   1         *        按下第一次每 200ms 闪烁一次，
-  21   1         *        再按一次，400ms 闪烁一次，
-  22   1         *        第三次按下，1s 闪烁一次，
-  23   1         *        再次按下重复之前步骤（恢复100ms闪烁一次）。
-  24   1         */
+  10   1        /**
+  11   1         * 使用定时器 0，方式 1，
+  12   1         *    控制 LED0 每秒闪烁一次。
+  13   1         *    用一个按键控制 LED1，默认 100ms 闪烁一次，
+  14   1         *        按下第一次每 200ms 闪烁一次，
+  15   1         *        再按一次，400ms 闪烁一次，
+  16   1         *        第三次按下，1s 闪烁一次，
+  17   1         *        再次按下重复之前步骤（恢复100ms闪烁一次）。
+  18   1         */
+  19   1      
+  20   1        // 定时器初始化
+  21   1        Init_T0_MODE1();
+  22   1      
+  23   1        // 外部中断0 初始化
+  24   1        Init_INT0();
   25   1      
-  26   1        // 定时器初始化
-  27   1        Init_T0();
-  28   1        Init_T1();
-  29   1      
-  30   1        // 外部中断0 初始化
-  31   1        Init_INT0();
-  32   1      
-  33   1        while (1)
-  34   1        {
-  35   2          ;
-  36   2          // // 点亮 LED1~LED4
-  37   2          // TurnOnLED(0);
-  38   2          // TurnOnLED(1);
-  39   2          // TurnOnLED(2);
-  40   2          // TurnOnLED(3);
-  41   2        }
-  42   1      }
+  26   1        while (1)
+  27   1        {
+  28   2          ;
+  29   2          // // 点亮 LED1~LED4
+  30   2          // TurnOnLED(0);
+  31   2          // TurnOnLED(1);
+  32   2          // TurnOnLED(2);
+  33   2          // TurnOnLED(3);
+  34   2        }
+  35   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     11    ----
+   CODE SIZE        =      8    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

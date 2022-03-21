@@ -5,7 +5,7 @@
 #include "timer.h"
 
 extern unsigned char FLASH_MODE;
-extern unsigned int COUNT_T1_LED4;
+extern unsigned int COUNT_T0_LED1;
 // 初始化外部中断0（P32下降沿触发）
 void Init_INT0(void)
 {
@@ -23,7 +23,7 @@ void INT0_IRQHandler(void) interrupt 0
     FLASH_MODE = (FLASH_MODE + 1) % 4;
 
     // 重新开始计数
-    COUNT_T1_LED4 = 0;
+    COUNT_T0_LED1 = 0;
 
     // 根据 LED7 的亮灭判断中断是否触发
     SwitchLED(7);
