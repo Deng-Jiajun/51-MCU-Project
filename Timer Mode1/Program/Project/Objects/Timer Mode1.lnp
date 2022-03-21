@@ -1,0 +1,7 @@
+".\Objects\delay.obj",
+".\Objects\ExternalInterrupt.obj",
+".\Objects\led.obj",
+".\Objects\main.obj",
+".\Objects\timer.obj" 
+TO ".\Objects\Timer Mode1" 
+PRINT(".\Listings\Timer Mode1.m51")

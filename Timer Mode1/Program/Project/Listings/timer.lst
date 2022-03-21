@@ -1,0 +1,159 @@
+C51 COMPILER V9.60.0.0   TIMER                                                             03/21/2022 12:22:43 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE TIMER
+OBJECT MODULE PLACED IN .\Objects\timer.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\Source\timer.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Li
+                    -stings\timer.lst) TABS(2) OBJECT(.\Objects\timer.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include "timer.h"
+   3          #include "led.h"
+   4          #include "delay.h"
+   5          
+   6          /* 方式 0 定时器只有 13 位，最大值 8192，最多只能定时 8.192ms，所以引入一个 coun
+             -t 计算中断的次数，以中断次数来实现更大的触发执行间隔（count ms）*/
+   7          unsigned int COUNT_T0_LED0 = 0;
+   8          unsigned int COUNT_T0_LED1 = 0;
+   9          unsigned int COUNT_T1_LED3 = 0;
+  10          unsigned int COUNT_T1_LED4 = 0;
+  11          
+  12          // 间隔时间 100(ms)、200(ms)、400(ms)、1000(ms)
+  13          unsigned int INTERVAL_TIME[4] = {100, 200, 400, 1000};
+  14          
+  15          unsigned char FLASH_MODE = 0;
+  16          
+  17          // 初始化定时器 T0
+  18          void Init_T0(void)
+  19          {
+  20   1          /* 配置定时器 */
+  21   1      
+  22   1          TMOD = TMOD & 0xF0; // 方式 0（13 位定时器）、定时模式、无需门控制
+  23   1                              //（低 4 位全置 0）
+  24   1      
+  25   1          TR0 = 1; // 开启定时器 0
+  26   1      
+  27   1          // 1000μs = 1ms，2^13 = 8192，2^5 = 32
+  28   1          TH0 = (8192 - 1000) / 32; // 赋值初值高 8 位
+  29   1          TL0 = (8192 - 1000) % 32; // 赋值初值低 5 位
+  30   1      
+  31   1          TF0 = 0; // 清标志位
+  32   1      
+  33   1          /* 配置中断1 */
+  34   1          ET0 = 1; // 允许定时器 0 中断
+  35   1          EA = 1;  // 打开总中断
+  36   1          PT0 = 0; // 配置优先级，低
+  37   1      }
+  38          
+  39          // 初始化定时器 T1
+  40          void Init_T1(void)
+  41          {
+  42   1          /* 配置定时器 */
+  43   1      
+  44   1          TMOD = TMOD & 0x0F; // 方式 0（13 位定时器）、定时模式、无需门控制
+  45   1                              //（高 4 位全置 0）
+  46   1      
+  47   1          TR1 = 1; // 开启定时器 1
+  48   1      
+  49   1          // 1000μs = 1ms，2^13 = 8192，2^5 = 32
+  50   1          TH1 = (8192 - 1000) / 32; // 赋值初值高 8 位
+  51   1          TL1 = (8192 - 1000) % 32; // 赋值初值低 5 位
+  52   1      
+  53   1          TF1 = 0; // 清标志位
+C51 COMPILER V9.60.0.0   TIMER                                                             03/21/2022 12:22:43 PAGE 2   
+
+  54   1      
+  55   1          /* 配置中断3 */
+  56   1          ET1 = 1; // 允许定时器 0 中断
+  57   1          EA = 1;  // 打开总中断
+  58   1          PT1 = 0; // 配置优先级，低
+  59   1      }
+  60          
+  61          // 定时器 T0 中断处理程序（中断向量 1）
+  62          void T0_IRQHandler(void) interrupt 1
+  63          {
+  64   1          // 再次初始化
+  65   1          TH0 = (8192 - 1000) / 32;
+  66   1          TL0 = (8192 - 1000) % 32;
+  67   1      
+  68   1          COUNT_T0_LED0++;
+  69   1      
+  70   1          // 每 10ms 跑一次
+  71   1          if (COUNT_T0_LED0 == 10)
+  72   1          {
+  73   2              COUNT_T0_LED0 = 0;
+  74   2              // LED0 每 20ms 亮（10ms）灭（10ms）一次
+  75   2              SwitchLED(0);
+  76   2          }
+  77   1      
+  78   1          // LED1 每秒闪烁一次
+  79   1          COUNT_T0_LED1++;
+  80   1      
+  81   1          // 每 1s(1000ms) 跑一次
+  82   1          if (COUNT_T0_LED1 == 1000)
+  83   1          {
+  84   2              COUNT_T0_LED1 = 0;
+  85   2      
+  86   2              TurnOnLED(1);
+  87   2          }
+  88   1          // 闪烁太快看不出来，亮100ms再关
+  89   1          if (COUNT_T0_LED1 == 100)
+  90   1          {
+  91   2              TurnOffLED(1);
+  92   2          }
+  93   1      }
+  94          
+  95          // 定时器 T1 中断处理程序（中断向量 3）
+  96          void T1_IRQHandler(void) interrupt 3
+  97          {
+  98   1          // 再次初始化
+  99   1          TH1 = (8192 - 1000) / 32;
+ 100   1          TL1 = (8192 - 1000) % 32;
+ 101   1      
+ 102   1          // LED3 每秒闪烁一次
+ 103   1          COUNT_T1_LED3++;
+ 104   1      
+ 105   1          // 每 1s(1000ms) 跑一次
+ 106   1          if (COUNT_T1_LED3 == 1000)
+ 107   1          {
+ 108   2              COUNT_T1_LED3 = 0;
+ 109   2              TurnOnLED(3);
+ 110   2          }
+ 111   1          // 闪烁太快看不出来，亮100ms再关
+ 112   1          if (COUNT_T1_LED3 == 100)
+ 113   1          {
+ 114   2              TurnOffLED(3);
+ 115   2          }
+C51 COMPILER V9.60.0.0   TIMER                                                             03/21/2022 12:22:43 PAGE 3   
+
+ 116   1      
+ 117   1          // 通过外部中断识别按键操作，切换4种闪烁模式
+ 118   1      
+ 119   1          COUNT_T1_LED4++;
+ 120   1          if (COUNT_T1_LED4 == INTERVAL_TIME[FLASH_MODE])
+ 121   1          {
+ 122   2              COUNT_T1_LED4 = 0;
+ 123   2              TurnOnLED(4);
+ 124   2          }
+ 125   1          // 闪烁太快看不出来，亮100ms再关（默认MODE时，LED4会常亮)
+ 126   1          if (COUNT_T1_LED4 == 100)
+ 127   1          {
+ 128   2              TurnOffLED(4);
+ 129   2          }
+ 130   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    317    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     17    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
