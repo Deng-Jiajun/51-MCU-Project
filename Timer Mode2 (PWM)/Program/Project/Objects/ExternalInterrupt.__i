@@ -1,0 +1,1 @@
+"..\Source\ExternalInterrupt.c" OPTIMIZE (8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\ExternalInterrupt.lst) TABS (2) OBJECT(.\Objects\ExternalInterrupt.obj)
