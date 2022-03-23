@@ -9,6 +9,7 @@
         "STDIO.H": "cpp",
         "key4x4.h": "c",
         "externalinterrupt.h": "c",
-        "led.h": "c"
+        "led.h": "c",
+        "uart.h": "c"
     }
 }

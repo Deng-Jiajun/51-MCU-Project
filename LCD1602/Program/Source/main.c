@@ -22,6 +22,7 @@ void main(void)
     while (1)
     {
         // 实验发现，只要while循环里有延时，lcd1602 就会屏闪，按键检测也失效，这部分内容先搁置
+        // TODO 用中断处理按键
         if (KEY1 == 0)
         {
             DelayXms(10);
