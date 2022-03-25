@@ -1,0 +1,220 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    03/25/2022  16:54:09  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\delay.obj, .\Objects\seven_segment_display_mpx4.obj, .\Objects
+>> \external_interrupt.obj TO .\Objects\Challenge 10s PRINT (.\Listings\Challenge 10s.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\delay.obj (DELAY)
+  .\Objects\seven_segment_display_mpx4.obj (SEVEN_SEGMENT_DISPLAY_MPX4)
+  .\Objects\external_interrupt.obj (EXTERNAL_INTERRUPT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?COPY)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?UIDIV)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\Challenge 10s (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000EH     UNIT         ?DT?SEVEN_SEGMENT_DISPLAY_MPX4
+            DATA    0016H     000DH     UNIT         _DATA_GROUP_
+            DATA    0023H     0004H     UNIT         ?DT?_DELAYXS?DELAY
+            DATA    0027H     0001H     UNIT         ?DT?MAIN
+            IDATA   0028H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0003H     ABSOLUTE     
+            CODE    0006H     014BH     UNIT         ?C?LIB_CODE
+            CODE    0151H     008CH     UNIT         ?C_C51STARTUP
+            CODE    01DDH     006BH     UNIT         ?PR?_COMMONANODESEGMENTDISPLAYMPX4_DISPLAYNUMBER?SEVEN_SEGMENT_DISP
+>> LAY_MPX4
+            CODE    0248H     002CH     UNIT         ?PR?MAIN?MAIN
+            CODE    0274H     0020H     UNIT         ?PR?_DELAYXMS?DELAY
+            CODE    0294H     001DH     UNIT         ?PR?_DELAYXS?DELAY
+            CODE    02B1H     0018H     UNIT         ?PR?INT0_IRQHANDLER?EXTERNAL_INTERRUPT
+            CODE    02C9H     0016H     UNIT         ?C_INITSEG
+            CODE    02DFH     000BH     UNIT         ?PR?INIT_INT0?EXTERNAL_INTERRUPT
+            CODE    02EAH     0008H     UNIT         ?CO?SEVEN_SEGMENT_DISPLAY_MPX4
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Challenge 10s (MAIN)
+
+
+SEGMENT                                            DATA_GROUP 
+  +--> CALLED SEGMENT                            START    LENGTH
+----------------------------------------------------------------
+?C_C51STARTUP                                    -----    -----
+  +--> ?PR?MAIN?MAIN
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/25/2022  16:54:09  PAGE 2
+
+
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                                    0016H    0002H
+  +--> ?PR?INIT_INT0?EXTERNAL_INTERRUPT
+  +--> ?PR?_COMMONANODESEGMENTDISPLAYMPX4_DI...
+
+?PR?_COMMONANODESEGMENTDISPLAYMPX4_DI...         0018H    000BH
+  +--> ?CO?SEVEN_SEGMENT_DISPLAY_MPX4
+  +--> ?PR?_DELAYXMS?DELAY
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Challenge 10s (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0027H         PUBLIC        clockState
+  C:0248H         PUBLIC        main
+  -------         PROC          MAIN
+  -------         DO            
+  D:0016H         SYMBOL        count
+  -------         ENDDO         
+  C:0248H         LINE#         26
+  C:0248H         LINE#         27
+  C:0248H         LINE#         28
+  C:024DH         LINE#         32
+  C:0250H         LINE#         34
+  C:0250H         LINE#         35
+  C:0250H         LINE#         36
+  C:0257H         LINE#         37
+  C:0257H         LINE#         38
+  C:025BH         LINE#         39
+  C:025DH         LINE#         40
+  C:0263H         LINE#         41
+  C:0263H         LINE#         42
+  C:026BH         LINE#         43
+  C:026BH         LINE#         45
+  C:0272H         LINE#         46
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0274H         PUBLIC        _DelayXms
+  C:0294H         PUBLIC        _DelayXs
+  -------         PROC          _DELAYXMS
+  D:0006H         SYMBOL        ms
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0274H         LINE#         5
+  C:0274H         LINE#         6
+  C:0274H         LINE#         8
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/25/2022  16:54:09  PAGE 3
+
+
+  C:027EH         LINE#         9
+  C:027EH         LINE#         11
+  C:028CH         LINE#         13
+  C:0293H         LINE#         14
+  -------         ENDPROC       _DELAYXMS
+  -------         PROC          _DELAYXS
+  D:0023H         SYMBOL        s
+  -------         DO            
+  D:0082H         SYMBOL        i
+  D:0025H         SYMBOL        j
+  -------         ENDDO         
+  C:0294H         LINE#         17
+  C:0298H         LINE#         18
+  C:0298H         LINE#         20
+  C:02A6H         LINE#         21
+  C:02A6H         LINE#         22
+  C:02ADH         LINE#         23
+  C:02B0H         LINE#         24
+  -------         ENDPROC       _DELAYXS
+  -------         ENDMOD        DELAY
+
+  -------         MODULE        SEVEN_SEGMENT_DISPLAY_MPX4
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:0008H         PUBLIC        SEGMENT_CODE_COMMON_ANODE
+  C:02EAH         SYMBOL        _?ix1000
+  D:0012H         PUBLIC        BIT_CODE
+  C:01DDH         PUBLIC        _CommonAnodeSegmentDisplayMPX4_DisplayNumber
+  -------         PROC          _COMMONANODESEGMENTDISPLAYMPX4_DISPLAYNUMBER
+  D:0018H         SYMBOL        num
+  -------         DO            
+  D:001AH         SYMBOL        i
+  D:001BH         SYMBOL        j
+  -------         ENDDO         
+  C:01DDH         LINE#         11
+  C:01E1H         LINE#         12
+  C:01E1H         LINE#         14
+  C:01F4H         LINE#         16
+  C:0205H         LINE#         17
+  C:0205H         LINE#         20
+  C:0226H         LINE#         22
+  C:022EH         LINE#         25
+  C:0233H         LINE#         26
+  C:0233H         LINE#         27
+  C:0236H         LINE#         28
+  C:0236H         LINE#         30
+  C:023DH         LINE#         32
+  C:0240H         LINE#         33
+  C:0243H         LINE#         34
+  C:0247H         LINE#         35
+  -------         ENDPROC       _COMMONANODESEGMENTDISPLAYMPX4_DISPLAYNUMBER
+  -------         ENDMOD        SEVEN_SEGMENT_DISPLAY_MPX4
+
+  -------         MODULE        EXTERNAL_INTERRUPT
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A8H.7       PUBLIC        EA
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/25/2022  16:54:09  PAGE 4
+
+
+  C:02DFH         PUBLIC        Init_INT0
+  C:02B1H         PUBLIC        INT0_IRQHandler
+  B:0088H.1       PUBLIC        IE0
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.0       PUBLIC        IT0
+  B:00B8H.0       PUBLIC        PX0
+  -------         PROC          INIT_INT0
+  C:02DFH         LINE#         9
+  C:02DFH         LINE#         10
+  C:02DFH         LINE#         11
+  C:02E1H         LINE#         12
+  C:02E3H         LINE#         13
+  C:02E5H         LINE#         14
+  C:02E7H         LINE#         15
+  C:02E9H         LINE#         16
+  -------         ENDPROC       INIT_INT0
+  -------         PROC          INT0_IRQHANDLER
+  C:02B1H         LINE#         19
+  C:02B7H         LINE#         22
+  C:02C2H         LINE#         23
+  -------         ENDPROC       INT0_IRQHANDLER
+  -------         ENDMOD        EXTERNAL_INTERRUPT
+
+  -------         MODULE        ?C?COPY
+  C:00D6H         PUBLIC        ?C?COPY
+  -------         ENDMOD        ?C?COPY
+
+  -------         MODULE        ?C?UIDIV
+  C:00FCH         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYXS?DELAY
+
+Program Size: data=41.0 xdata=0 code=754
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

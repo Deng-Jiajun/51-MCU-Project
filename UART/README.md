@@ -1,0 +1,2 @@
+串口通信
+通用异步收发传输器（Universal Asynchronous Receiver/Transmitter)

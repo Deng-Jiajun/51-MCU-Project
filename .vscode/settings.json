@@ -13,6 +13,8 @@
         "uart.h": "c",
         "iic.h": "c",
         "intrins.h": "c",
-        "INTRINS.H": "cpp"
+        "INTRINS.H": "cpp",
+        "external_interrupt.h": "c",
+        "seven_segment_display_mpx4.h": "c"
     }
 }

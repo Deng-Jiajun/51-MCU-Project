@@ -1,0 +1,1 @@
+"..\Source\seven_segment_display_mpx4.c" OPTIMIZE (8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\seven_segment_display_mpx4.lst) TABS (2) OBJECT(.\Objects\seven_segment_display_mpx4.obj)
