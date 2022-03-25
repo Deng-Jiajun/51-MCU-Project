@@ -15,6 +15,7 @@
         "intrins.h": "c",
         "INTRINS.H": "cpp",
         "external_interrupt.h": "c",
-        "seven_segment_display_mpx4.h": "c"
+        "seven_segment_display_mpx4.h": "c",
+        "intrin.h": "c"
     }
 }

@@ -1,0 +1,6 @@
+".\Objects\delay.obj",
+".\Objects\key4X4.obj",
+".\Objects\lcd1602.obj",
+".\Objects\main.obj" 
+TO ".\Objects\Digital Clock" 
+PRINT(".\Listings\Digital Clock.m51")

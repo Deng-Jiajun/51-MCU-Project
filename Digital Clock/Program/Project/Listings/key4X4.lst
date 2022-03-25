@@ -1,0 +1,198 @@
+C51 COMPILER V9.60.0.0   KEY4X4                                                            03/25/2022 17:21:45 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE KEY4X4
+OBJECT MODULE PLACED IN .\Objects\key4X4.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\Source\key4X4.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\L
+                    -istings\key4X4.lst) TABS(2) OBJECT(.\Objects\key4X4.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include "key4X4.h"
+   3          #include "delay.h"
+   4          
+   5          // 检测按键事件，返回按键对应位置 1~16，未按下返回 0
+   6          unsigned char KeyScan(void)
+   7          {
+   8   1          /**
+   9   1           * 行对应 0、1、2、3
+  10   1           * 列对应 4、5、6、7
+  11   1           */
+  12   1      
+  13   1          // 从端口读取的按键值
+  14   1          unsigned char keyValueFromPort;
+  15   1      
+  16   1          // // 按键响应所在行对应的按键值
+  17   1          // unsigned char rowKeyValue[4] = {0x0E, 0x0D, 0x0B, 0x07};
+  18   1      
+  19   1          // // 按键响应所在列对应的按键值
+  20   1          // unsigned char colKeyValue[4] = {0xE0, 0xD0, 0xB0, 0x70};
+  21   1      
+  22   1          // 记录探测得到的按键行值，范围[0~4]
+  23   1          unsigned char row = 0;
+  24   1      
+  25   1          // 记录探测得到的按键列值，范围[0~4]
+  26   1          unsigned char col = 0;
+  27   1      
+  28   1          // 等待计时器
+  29   1          unsigned char waitTimer = 0;
+  30   1      
+  31   1          /**
+  32   1           * ps: 这里讨论的行列都从0开始
+  33   1           *
+  34   1           * 行为1，列为0（0000 1111）
+  35   1           * 没有按键按下时为：0000 1111(0x0F)
+  36   1           * [2,3] 按下时为：0000 1011（第2行）→ 0x0B
+  37   1           *          类似的，第0行：0000 1110 → 0x0E
+  38   1           *                  第1行：0000 1101 → 0x0D
+  39   1           *                 (第2行：0000 1011 → 0x0B)
+  40   1           *                  第3行：0000 0111 → 0x07
+  41   1           */
+  42   1          KEY_PORT = 0x0F; // 设置探测值（探测行）
+  43   1      
+  44   1          DelayXms(1); // 延迟检测（避免直接获得探测值）
+  45   1          keyValueFromPort = KEY_PORT;
+  46   1      
+  47   1          // 判断响应行
+  48   1          switch (keyValueFromPort)
+  49   1          {
+  50   2          case 0x0E:
+  51   2              row = 0;
+  52   2              break;
+  53   2      
+  54   2          case 0x0D:
+C51 COMPILER V9.60.0.0   KEY4X4                                                            03/25/2022 17:21:45 PAGE 2   
+
+  55   2              row = 1;
+  56   2              break;
+  57   2      
+  58   2          case 0x0B:
+  59   2              row = 2;
+  60   2              break;
+  61   2      
+  62   2          case 0x07:
+  63   2              row = 3;
+  64   2              break;
+  65   2      
+  66   2          default:
+  67   2              // 不符合以上4种情况，则没有按下按键，直接返回0
+  68   2              return 0;
+  69   2          }
+  70   1      
+  71   1          // 继续判断响应列
+  72   1          /**
+  73   1           * ps: 这里讨论的行列都从0开始
+  74   1           *
+  75   1           * 行为0，列为1（1111 0000）
+  76   1           * 没有按键按下时为：1111 0000(0xF0)
+  77   1           * [2,3] 按下时为：0111 0000（第3列）→ 0x70
+  78   1           *          类似的，第0列：1110 0000 → 0xE0
+  79   1           *                  第1列：1101 0000 → 0xD0
+  80   1           *                  第2列：1011 0000 → 0xB0
+  81   1           *                 (第3列：0111 0000 → 0x70)
+  82   1           */
+  83   1          KEY_PORT = 0xF0; // 设置探测值（探测列）
+  84   1      
+  85   1          DelayXms(1); // 延迟检测（避免直接获得探测值）
+  86   1          keyValueFromPort = KEY_PORT;
+  87   1          switch (keyValueFromPort)
+  88   1          {
+  89   2          case 0xE0:
+  90   2              col = 0;
+  91   2              break;
+  92   2      
+  93   2          case 0xD0:
+  94   2              col = 1;
+  95   2              break;
+  96   2      
+  97   2          case 0xB0:
+  98   2              col = 2;
+  99   2              break;
+ 100   2      
+ 101   2          case 0x70:
+ 102   2              col = 3;
+ 103   2              break;
+ 104   2      
+ 105   2          default:
+ 106   2              // 有行肯定有列，没有就出错了，返回0
+ 107   2              return 0;
+ 108   2          }
+ 109   1      
+ 110   1          // 只要是这4种情况中的任意一种，那按键就没有松开
+ 111   1          while (KEY_PORT == 0xE0 || KEY_PORT == 0xD0 || KEY_PORT == 0xB0 || KEY_PORT == 0x70)
+ 112   1          {
+ 113   2              DelayXms(1);
+ 114   2      
+ 115   2              // 超时就跳出循环（可以实现长按效果）
+ 116   2              waitTimer++;
+C51 COMPILER V9.60.0.0   KEY4X4                                                            03/25/2022 17:21:45 PAGE 3   
+
+ 117   2              if (waitTimer == 255)
+ 118   2                  break;
+ 119   2          }
+ 120   1      
+ 121   1          // 行、列判断完毕，返回对应按键位置 [1,16]
+ 122   1          return row * 4 + col + 1;
+ 123   1      }
+ 124          
+ 125          // 建立按键位置和按键含义的映射，返回按键含义，没有则返回0
+ 126          unsigned char KeyValue(void)
+ 127          {
+ 128   1          unsigned char keyValue = KeyScan();
+ 129   1          // keyValue ∈ [0,16]
+ 130   1          switch (keyValue)
+ 131   1          {
+ 132   2          case 0:
+ 133   2              return 0; // 没有按下按键，返回 0
+ 134   2          case 1:
+ 135   2              return '1';
+ 136   2          case 2:
+ 137   2              return '2';
+ 138   2          case 3:
+ 139   2              return '3';
+ 140   2          case 4:
+ 141   2              return '+';
+ 142   2          case 5:
+ 143   2              return '4';
+ 144   2          case 6:
+ 145   2              return '5';
+ 146   2          case 7:
+ 147   2              return '6';
+ 148   2          case 8:
+ 149   2              return '-';
+ 150   2          case 9:
+ 151   2              return '7';
+ 152   2          case 10:
+ 153   2              return '8';
+ 154   2          case 11:
+ 155   2              return '9';
+ 156   2          case 12:
+ 157   2              return 'C'; // clear
+ 158   2          case 13:
+ 159   2              return '.';
+ 160   2          case 14:
+ 161   2              return '0';
+ 162   2          case 15:
+ 163   2              return '=';
+ 164   2          case 16:
+ 165   2              return 'B'; // backspace
+ 166   2          }
+ 167   1      }
+*** WARNING C291 IN LINE 167 OF ..\Source\key4X4.c: not every exit path returns a value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    280    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+C51 COMPILER V9.60.0.0   KEY4X4                                                            03/25/2022 17:21:45 PAGE 4   
+
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
