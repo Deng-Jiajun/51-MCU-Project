@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   IIC                                                               03/25/2022 11:15:20 PAGE 1   
+C51 COMPILER V9.60.0.0   IIC                                                               03/26/2022 15:44:52 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE IIC
@@ -62,7 +62,7 @@ line level    source
   52   1          else
   53   1          {
   54   2              SDA = 1;     // SDA 高，非应答
-C51 COMPILER V9.60.0.0   IIC                                                               03/25/2022 11:15:20 PAGE 2   
+C51 COMPILER V9.60.0.0   IIC                                                               03/26/2022 15:44:52 PAGE 2   
 
   55   2              IIC_Dealy(); // 这里应该不需要维持这么久
   56   2          }
@@ -126,7 +126,7 @@ line level    source
  114   1      }
  115          
  116          // IIC 主机接收字符（字节）
-C51 COMPILER V9.60.0.0   IIC                                                               03/25/2022 11:15:20 PAGE 3   
+C51 COMPILER V9.60.0.0   IIC                                                               03/26/2022 15:44:52 PAGE 3   
 
  117          unsigned char IIC_Read_Byte(void)
  118          {

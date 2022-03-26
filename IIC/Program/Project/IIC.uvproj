@@ -396,6 +396,16 @@
               <FileType>1</FileType>
               <FilePath>..\Source\lcd1602.c</FilePath>
             </File>
+            <File>
+              <FileName>pcf8591.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Source\pcf8591.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Source\timer.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

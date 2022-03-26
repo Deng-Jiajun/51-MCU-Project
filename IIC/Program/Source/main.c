@@ -2,8 +2,63 @@
 #include "delay.h"
 #include "iic.h"
 #include "lcd1602.h"
+#include "pcf8591.h"
+#include "timer.h"
+#include <math.h>
 
 void main(void)
+{
+
+  //! 去 timer.c 看中断处理程序
+  // Init_T0_MODE1(); // 初始化定时器
+  float x;
+  float temp;
+  unsigned char i;
+  while (1)
+  {
+    /**
+     * 心形公式：
+     * f(x) = ( 1 - (|x| -1)^2 )^(1/2)
+     * g(x) = 1/cos(1- |x|) - 3
+     *
+     * f(x) + 3：
+     * g(x) + 3：
+     */
+    x = 2.00;
+    for (i = 1; i < 100; i++)
+    {
+      x = x - 0.02;
+      temp = acos(1.0 - x) * 50.0;
+      IIC_Write_DAC((unsigned char)temp);
+
+      temp = sqrt(1 - (x - 1) * (x - 1)) + 3.0;
+      temp = temp * 50.0;
+      IIC_Write_DAC((unsigned char)temp);
+    }
+
+    x = 0.0;
+    for (i = 1; i < 100; i++)
+    {
+      x = x + 0.02;
+      temp = acos(1.0 - x) * 50.0;
+      IIC_Write_DAC((unsigned char)temp);
+      
+      temp = sqrt(1 - (x - 1) * (x - 1)) + 3.0;
+      temp = temp * 50.0;
+      IIC_Write_DAC((unsigned char)temp);
+    }
+
+    DelayXms(100);
+  }
+}
+
+/**
+ * @brief 测试 IIC 通信的一个 main 函数
+ *
+ * 主要是把 pcf8591 检测到的 AD 值转换为它所对应的电压值
+ *
+ */
+void old_main(void)
 {
   unsigned char ad; // 从 PCF8591 得到的 AD 值
   float v0 = 0;     // AD 值对应的电压
@@ -38,10 +93,9 @@ void main(void)
 
           // 用LCD1602显示
           LCD1602_2num(1, 5, (int)v0 / 100);
-          LCD1602_char(1, 7, '.'); 
+          LCD1602_char(1, 7, '.');
           LCD1602_2num(1, 8, (int)v0 % 100);
-          LCD1602_char(1, 10, 'v'); 
-
+          LCD1602_char(1, 10, 'v');
         }
       }
     }

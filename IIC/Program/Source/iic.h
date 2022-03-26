@@ -1,10 +1,10 @@
 #ifndef _IIC_H_
 #define _IIC_H_
 
-// 应答（继续发送）
+// 应答（继续发送）Acknowledgement
 #define ACK 0
 
-// 非应答（停止发送）
+// 非应答（停止发送）Negative Acknowledgement
 #define NACK 1
 
 /* 单片机引脚实现 IIC协议 */

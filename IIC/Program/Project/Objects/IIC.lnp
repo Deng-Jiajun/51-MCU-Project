@@ -1,6 +1,8 @@
 ".\Objects\delay.obj",
 ".\Objects\iic.obj",
 ".\Objects\main.obj",
-".\Objects\lcd1602.obj" 
+".\Objects\lcd1602.obj",
+".\Objects\pcf8591.obj",
+".\Objects\timer.obj" 
 TO ".\Objects\IIC" 
 PRINT(".\Listings\IIC.m51")

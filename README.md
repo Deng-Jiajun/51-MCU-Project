@@ -12,3 +12,5 @@
 │  └─Stimulation 👈仿真项目（Proteus）
 ```
 > ps: 生成的 `.hex` 文件在`\Program\Project\Objects`目录下
+
+实验来源：https://space.bilibili.com/509821451/channel/seriesdetail?sid=762023

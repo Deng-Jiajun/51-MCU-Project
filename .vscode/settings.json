@@ -16,6 +16,10 @@
         "INTRINS.H": "cpp",
         "external_interrupt.h": "c",
         "seven_segment_display_mpx4.h": "c",
-        "intrin.h": "c"
+        "intrin.h": "c",
+        "pcf8591.h": "c",
+        "timer.h": "c",
+        "math.h": "c",
+        "MATH.H": "cpp"
     }
 }
