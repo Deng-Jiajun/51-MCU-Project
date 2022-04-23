@@ -1,6 +1,0 @@
-".\Objects\main.obj",
-".\Objects\delay.obj",
-".\Objects\seven_segment_display_mpx4.obj",
-".\Objects\external_interrupt.obj" 
-TO ".\Objects\Challenge 10s" 
-PRINT(".\Listings\Challenge 10s.m51")

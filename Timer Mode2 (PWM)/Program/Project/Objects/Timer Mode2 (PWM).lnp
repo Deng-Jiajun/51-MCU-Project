@@ -1,7 +1,0 @@
-".\Objects\delay.obj",
-".\Objects\ExternalInterrupt.obj",
-".\Objects\led.obj",
-".\Objects\main.obj",
-".\Objects\timer.obj" 
-TO ".\Objects\Timer Mode2 (PWM)" 
-PRINT(".\Listings\Timer Mode2 (PWM).m51")

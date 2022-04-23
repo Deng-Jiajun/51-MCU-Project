@@ -1,7 +1,0 @@
-".\Objects\delay.obj",
-".\Objects\led.obj",
-".\Objects\main.obj",
-".\Objects\timer.obj",
-".\Objects\ExternalInterrupt.obj" 
-TO ".\Objects\Timer" 
-PRINT(".\Listings\Timer.m51")

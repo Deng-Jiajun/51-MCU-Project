@@ -1,3 +1,0 @@
-".\Objects\main.obj" 
-TO ".\Objects\Seven Segment Display MPX4" 
-PRINT(".\Listings\Seven Segment Display MPX4.m51")
